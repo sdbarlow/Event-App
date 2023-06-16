@@ -5,16 +5,30 @@ import EventList from '@/components/events/EventList';
 import ResultsTitle from '@/components/events/results-title';
 import { Fragment } from 'react';
 import Button from '../../components/ui/button'
+import Head from 'next/head';
 
 function FilteredEventsPage({ filteredEvents, hasError, year, month }) {
 
+    const pageHeadSection = (
+        <Head>
+            <title>Filtered Events</title>
+            <meta name='description' content={`All events for ${month}/${year}`}/>
+        </Head>
+    )
+
     if (!filteredEvents){
-        return <p className='center'>Loading...</p>
+        return (
+        <Fragment>
+            {pageHeadSection}
+            <p className='center'>Loading...</p>
+        </Fragment>
+        )
     }
 
 
     if(hasError){
         return <Fragment>
+            {pageHeadSection}
             <p>Invalid Values Bish</p>
             <div className='center'>
             <Button link='/events'>Show All Events</Button>
@@ -23,13 +37,19 @@ function FilteredEventsPage({ filteredEvents, hasError, year, month }) {
     }
 
     if (filteredEvents.length === 0 || !filteredEvents){
-        return <h1>No Events Found For Chosen Filter</h1>
+        return (
+            <Fragment>
+                {pageHeadSection}
+                <h1>No Events Found For Chosen Filter</h1>
+            </Fragment>
+            )
     }
 
     const date = new Date(year, month - 1);
 
   return (
    <Fragment>
+    {pageHeadSection}
        <ResultsTitle date={date}></ResultsTitle>
       <EventList items={filteredEvents}/>
    </Fragment>

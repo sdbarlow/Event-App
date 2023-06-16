@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import EventSummary from '@/components/event-detail/event-summary';
 import EventLogistics from '@/components/event-detail/event-logistics';
 import EventContent from '@/components/event-detail/event-content';
+import Head from 'next/head';
 
 function EventDetailPage({ events }) {
 
@@ -18,6 +19,10 @@ function EventDetailPage({ events }) {
 
   return (
     <Fragment>
+        <Head>
+            <title>{events.title}</title>
+            <meta name='description' content={events.description}/>
+        </Head>
             <EventSummary title={events.title}></EventSummary>
             <EventLogistics date={events.date} address={events.location} image={events.image} imageAlt={events.title}></EventLogistics>
             <EventContent>
