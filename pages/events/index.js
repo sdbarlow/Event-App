@@ -32,7 +32,7 @@ export async function getStaticProps(){
                 transformedSales.push({id: key, date: data[key].date, description: data[key].description, image: data[key].image, isFeatured: data[key].isFeatured, location: data[key].location, title: data[key].title})
             }
 
-            return { props: {events: transformedSales}, revalidate: 10 };
+            return { props: {events: transformedSales}, revalidate: 60 };
         })
 }
 

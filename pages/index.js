@@ -22,7 +22,7 @@ export async function getStaticProps(){
               }
             }
 
-            return { props: {featuredEvents: transformedSales}, revalidate: 10 };
+            return { props: {featuredEvents: transformedSales}, revalidate: 1800 };
         })
 }
 
